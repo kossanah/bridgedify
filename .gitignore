@@ -242,3 +242,5 @@ scripts/stress-test/reports/
 
 # Code Agent Folder
 .qoder/*
+# Docker Compose for dokploy
+docker-compose.yml
