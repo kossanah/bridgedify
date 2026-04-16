@@ -26,11 +26,9 @@ jobs:
       matrix:
         include:
           - service_name: "build-api-amd64"
-            build_context: "api"
             file: "api/Dockerfile"
             image_name: ${{ github.repository }}/dify-api
           - service_name: "build-web-amd64"
-            build_context: "web"
             file: "web/Dockerfile"
             image_name: ${{ github.repository }}/dify-web
 
@@ -58,7 +56,7 @@ jobs:
         id: build
         uses: docker/build-push-action@v5
         with:
-          context: ./${{ matrix.build_context }}
+          context: .
           file: ./${{ matrix.file }}
           platforms: linux/amd64
           push: true
