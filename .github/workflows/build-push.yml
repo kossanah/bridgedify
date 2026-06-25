@@ -18,15 +18,15 @@ concurrency:
 env:
   DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-  DIFY_WEB_IMAGE_NAME: ${{ vars.DIFY_WEB_IMAGE_NAME || 'langgenius/dify-web' }}
-  DIFY_API_IMAGE_NAME: ${{ vars.DIFY_API_IMAGE_NAME || 'langgenius/dify-api' }}
-  DIFY_AGENT_IMAGE_NAME: ${{ vars.DIFY_AGENT_IMAGE_NAME || 'langgenius/dify-agent-backend' }}
-  DIFY_AGENT_LOCAL_SANDBOX_IMAGE_NAME: ${{ vars.DIFY_AGENT_LOCAL_SANDBOX_IMAGE_NAME || 'langgenius/dify-agent-local-sandbox' }}
+  DIFY_WEB_IMAGE_NAME: ${{ vars.DIFY_WEB_IMAGE_NAME || 'kossanah/dify-web' }}
+  DIFY_API_IMAGE_NAME: ${{ vars.DIFY_API_IMAGE_NAME || 'kossanah/dify-api' }}
+  DIFY_AGENT_IMAGE_NAME: ${{ vars.DIFY_AGENT_IMAGE_NAME || 'kossanah/dify-agent-backend' }}
+  DIFY_AGENT_LOCAL_SANDBOX_IMAGE_NAME: ${{ vars.DIFY_AGENT_LOCAL_SANDBOX_IMAGE_NAME || 'kossanah/dify-agent-local-sandbox' }}
 
 jobs:
   build:
     runs-on: ${{ matrix.runs_on }}
-    if: github.repository == 'langgenius/dify'
+    if: github.repository == 'kossanah/bridgedify'
     permissions:
       contents: read
       id-token: write
@@ -140,7 +140,7 @@ jobs:
           retention-days: 1
 
   fork-build-validate:
-    if: github.repository != 'langgenius/dify'
+    if: github.repository != 'kossanah/bridgedify'
     runs-on: ubuntu-24.04
     strategy:
       matrix:
@@ -172,7 +172,7 @@ jobs:
   create-manifest:
     needs: build
     runs-on: depot-ubuntu-24.04
-    if: github.repository == 'langgenius/dify'
+    if: github.repository == 'kossanah/bridgedify'
     strategy:
       matrix:
         include:
